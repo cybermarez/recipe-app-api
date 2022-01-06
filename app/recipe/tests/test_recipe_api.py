@@ -58,7 +58,7 @@ class PrivateRecipeApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = get_user_model().objects.create_user(
-            'test@londonappdev.com',
+            'test@gmail.com',
             'testpass'
         )
         self.client.force_authenticate(self.user)
@@ -78,7 +78,7 @@ class PrivateRecipeApiTests(TestCase):
     def test_recipes_limited_to_user(self):
         """Test retrieving recipes for user"""
         user2 = get_user_model().objects.create_user(
-            'other@londonappdev.com',
+            'other@gmail.com',
             'password123'
         )
         sample_recipe(user=user2)
@@ -155,4 +155,3 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(ingredients.count(), 2)
         self.assertIn(ingredient1, ingredients)
         self.assertIn(ingredient2, ingredients)
-
